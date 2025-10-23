@@ -1,18 +1,19 @@
 /* --- Global Styles & Variables --- */
 :root {
-    --bg-dark: #1f1f1f; /* Slightly lighter than pure black */
+    --bg-dark: #1f1f1f; 
     --bg-darker: #1a1a1a;
-    --bg-card: #2c2c2c; /* Card background */
+    --bg-card: #2c2c2c; 
     --text-light: #f0f0f0;
     --text-muted: #a0a0a0;
-    --primary-accent: #4dd0e1; /* Vibrant Cyan/Teal */
-    --secondary-accent: #ab47bc; /* Vibrant Purple/Magenta */
+    --primary-accent: #00e5ff; /* Brighter Cyan */
+    --secondary-accent: #ff4081; /* Vibrant Pink */
     --border-color: #444;
     --shadow-light: rgba(0, 0, 0, 0.2);
     --shadow-medium: rgba(0, 0, 0, 0.4);
 
-    --font-heading: 'Audiowide', sans-serif;
-    --font-body: 'Nunito', sans-serif;
+    /* NEW FONTS */
+    --font-heading: 'Orbitron', sans-serif; /* Futuristic/Tech */
+    --font-body: 'Fira Sans', sans-serif;   /* Clean Sans-serif */
 
     --max-width: 1100px;
 }
@@ -33,30 +34,30 @@ body {
     color: var(--text-light);
     line-height: 1.7;
     font-size: 16px;
-    display: flex; /* Needed for sticky footer */
-    flex-direction: column; /* Needed for sticky footer */
-    min-height: 100vh; /* Needed for sticky footer */
+    display: flex; 
+    flex-direction: column; 
+    min-height: 100vh; 
 }
 
 .page-wrapper {
-    flex: 1; /* Needed for sticky footer */
+    flex: 1; 
     display: flex;
     flex-direction: column;
 }
 
 main {
-    flex-grow: 1; /* Make main content area expand */
+    flex-grow: 1; 
 }
 
 
 .container {
     max-width: var(--max-width);
     margin: 0 auto;
-    padding: 0 25px; /* Slightly more padding */
+    padding: 0 25px; 
 }
 
 .section {
-    padding: 80px 0; /* More vertical space */
+    padding: 80px 0; 
 }
 
 .bg-darker {
@@ -65,12 +66,13 @@ main {
 
 .section-title {
     font-family: var(--font-heading);
-    font-size: 2.5rem; /* Adjusted size */
-    font-weight: 400; /* Audiowide is bold by default */
+    font-size: 2.5rem; 
+    font-weight: 700; /* Orbitron might need explicit bold */
     text-align: center;
     margin-bottom: 25px;
     color: var(--primary-accent);
-    letter-spacing: 1px;
+    letter-spacing: 1.5px; /* More spacing for Orbitron */
+    text-transform: uppercase; /* Titles in uppercase */
 }
 
 .section-subtitle {
@@ -78,7 +80,7 @@ main {
     color: var(--text-muted);
     margin-bottom: 50px;
     font-size: 1.1rem;
-    max-width: 700px; /* Constrain width */
+    max-width: 700px; 
     margin-left: auto;
     margin-right: auto;
 }
@@ -100,8 +102,8 @@ a:hover {
 
 /* --- Navbar --- */
 .navbar {
-    background-color: rgba(31, 31, 31, 0.85); /* Semi-transparent dark bg */
-    backdrop-filter: blur(10px); /* Frosted glass effect */
+    background-color: rgba(31, 31, 31, 0.85); 
+    backdrop-filter: blur(10px); 
     padding: 20px 0;
     position: sticky;
     top: 0;
@@ -118,9 +120,9 @@ a:hover {
 .logo {
     font-family: var(--font-heading);
     font-size: 1.8rem;
-    font-weight: 400;
+    font-weight: 700;
     color: var(--text-light);
-    letter-spacing: 1px;
+    letter-spacing: 2px; /* More spacing for Orbitron logo */
     transition: color 0.3s ease;
 }
 .logo:hover {
@@ -143,6 +145,8 @@ a:hover {
     padding-bottom: 5px;
     border-bottom: 2px solid transparent;
     transition: color 0.3s ease, border-color 0.3s ease;
+    text-transform: uppercase; /* Nav links uppercase */
+    letter-spacing: 0.5px;
 }
 
 .nav-links a:hover {
@@ -150,20 +154,19 @@ a:hover {
     border-bottom-color: var(--primary-accent);
 }
 
-.nav-links a.active { /* Style for the current page link */
+.nav-links a.active { 
     color: var(--primary-accent);
     border-bottom-color: var(--primary-accent);
 }
 
 /* --- Hero Section (index.html) --- */
 .hero-section {
-    min-height: 70vh; /* Taller hero */
+    min-height: 70vh; 
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    background: linear-gradient(rgba(31, 31, 31, 0.7), rgba(31, 31, 31, 0.9)), var(--bg-dark);
-    /* Optional: Add subtle background pattern or image later */
+    background: linear-gradient(rgba(31, 31, 31, 0.8), rgba(31, 31, 31, 0.95)), var(--bg-dark);
     padding: 80px 0;
 }
 
@@ -173,17 +176,19 @@ a:hover {
 
 .hero-title {
     font-family: var(--font-heading);
-    font-size: 4rem;
+    font-size: 3.5rem; /* Slightly adjusted */
     color: var(--text-light);
     margin-bottom: 10px;
     letter-spacing: 2px;
+    font-weight: 700;
+    text-transform: uppercase;
 }
 
 .hero-subtitle {
     font-size: 1.5rem;
     color: var(--primary-accent);
     margin-bottom: 20px;
-    font-weight: 400;
+    font-weight: 400; /* Fira Sans regular */
 }
 
 .hero-description {
@@ -198,18 +203,20 @@ a:hover {
     background: linear-gradient(90deg, var(--primary-accent), var(--secondary-accent));
     color: var(--bg-darker);
     padding: 14px 30px;
-    border-radius: 50px; /* Pill shape */
+    border-radius: 50px; 
     font-weight: 600;
     font-size: 1.1rem;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: none;
     cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .cta-button:hover {
     transform: translateY(-3px) scale(1.03);
-    box-shadow: 0 10px 20px rgba(77, 208, 225, 0.3); /* Glow effect */
-    color: var(--bg-darker); /* Ensure text color stays on hover */
+    box-shadow: 0 10px 20px rgba(0, 229, 255, 0.3); /* Cyan Glow effect */
+    color: var(--bg-darker); 
 }
 
 .cta-button .arrow {
@@ -230,55 +237,62 @@ a:hover {
 .cta-button.secondary:hover {
     background: var(--primary-accent);
     color: var(--bg-darker);
-    box-shadow: 0 5px 15px rgba(77, 208, 225, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 229, 255, 0.2);
 }
 
+/* --- About Me & Goals Section (index.html) --- */
+.about-goals-section {
+    /* Style for the whole section if needed */
+}
 
-/* --- Goals Section (index.html) --- */
-.goals-list {
+.about-goals-content {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    margin-top: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive columns */
+    gap: 50px; /* Space between about and goals */
+    align-items: start; /* Align items to top */
 }
 
-.goal-item {
-    background-color: var(--bg-card);
-    padding: 30px;
-    border-radius: 8px;
-    border-left: 5px solid var(--primary-accent);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.goal-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px var(--shadow-medium);
-}
-
-.goal-item h3 {
+.about-me-text h3, .my-goals-list h3 {
     font-family: var(--font-heading);
-    font-size: 1.4rem;
-    margin-bottom: 15px;
+    font-size: 1.6rem;
+    margin-bottom: 20px;
     color: var(--text-light);
+    font-weight: 700;
+    border-bottom: 2px solid var(--primary-accent);
+    padding-bottom: 10px;
+    display: inline-block; /* Make border only as wide as text */
 }
 
-.goal-item p {
+.about-me-text p {
     color: var(--text-muted);
-    font-size: 1rem;
+    font-size: 1.05rem; /* Slightly larger body text */
+    margin-bottom: 15px;
 }
 
-/* --- About Site Section (index.html) --- */
-.about-site-content {
-    max-width: 800px;
+.my-goals-list ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.my-goals-list li {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    margin-bottom: 15px;
+    display: flex; /* Align icon and text */
+    align-items: flex-start; /* Align icon to top of text */
+}
+
+.goal-icon {
+    font-size: 1.2rem;
+    margin-right: 12px;
+    color: var(--primary-accent);
+    display: inline-block;
+    min-width: 25px; /* Ensure space for icon */
     text-align: center;
 }
-.about-site-content p {
-    margin-bottom: 20px;
-    font-size: 1.1rem;
-    color: var(--text-muted);
-}
-.about-site-content .cta-button {
-    margin-top: 20px;
+
+.my-goals-list .cta-button { /* Button specific to goals list */
+    margin-top: 25px; 
 }
 
 
@@ -308,15 +322,16 @@ a:hover {
     font-size: 3rem;
     color: var(--primary-accent);
     margin-bottom: 20px;
-    display: block; /* Ensure icon takes space */
+    display: block; 
 }
 
 .skill-card h3 {
     font-family: var(--font-heading);
     font-size: 1.3rem;
     margin-bottom: 10px;
-    font-weight: 400;
+    font-weight: 700;
     color: var(--text-light);
+    text-transform: uppercase;
 }
 
 .skill-card p {
@@ -329,19 +344,18 @@ a:hover {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
-    align-items: start; /* Align items to the top */
+    align-items: start; 
 }
 
-/* Style for the container div around each badge */
 .badge-item {
-    background-color: var(--bg-card); /* Give items a background */
+    background-color: var(--bg-card); 
     border-radius: 8px;
-    padding: 15px; /* Add padding inside the item */
+    padding: 15px; 
     border: 1px solid var(--border-color);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex; /* Use flexbox for image + description */
-    flex-direction: column; /* Stack image and description vertically */
-    height: 100%; /* Make items fill grid cell height if needed */
+    display: flex; 
+    flex-direction: column; 
+    height: 100%; 
 }
 
 .badge-item:hover {
@@ -352,27 +366,40 @@ a:hover {
 .badge-item img {
     width: 100%;
     height: auto;
-    border-radius: 4px; /* Slightly smaller radius for image inside */
-    background-color: #fff; /* White background for badge image */
+    border-radius: 4px; 
+    background-color: #fff; 
     padding: 5px; 
     border: 1px solid #ddd; 
-    margin-bottom: 10px; /* Space between image and description */
-    /* Remove transitions from img if they were on the container now */
+    margin-bottom: 10px; 
     transition: none; 
     box-shadow: none;
 }
 
-/* Style for the badge description paragraph */
 .badge-description {
     font-size: 0.9rem;
     color: var(--text-muted);
     line-height: 1.5;
-    margin-top: auto; /* Push description towards bottom if container is taller */
+    margin-top: auto; 
 }
 
-/* Optional: Slightly different style for the featured badge */
+.badge-date {
+    font-size: 0.8rem; 
+    color: var(--text-muted); 
+    margin-top: 8px; 
+    font-style: italic; 
+    text-align: right; 
+}
+
+.badge-description + .badge-date { 
+    margin-top: 10px; 
+}
+
+.badge-item img + .badge-date { 
+     margin-top: 10px;
+}
+
 .featured-badge {
-    border-left: 5px solid var(--secondary-accent); /* Add a side accent */
+    border-left: 5px solid var(--secondary-accent); 
 }
 
 
@@ -382,7 +409,7 @@ a:hover {
     color: var(--text-muted);
     text-align: center;
     padding: 30px 0;
-    margin-top: auto; /* Push footer to bottom */
+    margin-top: auto; 
     border-top: 1px solid var(--border-color);
 }
 
@@ -391,12 +418,18 @@ a:hover {
 }
 
 /* --- Responsive Design --- */
+@media (max-width: 900px) {
+    .about-goals-content {
+        grid-template-columns: 1fr; /* Stack about and goals on medium screens */
+    }
+}
+
 @media (max-width: 768px) {
     .section-title {
         font-size: 2rem;
     }
     .hero-title {
-        font-size: 3rem;
+        font-size: 2.8rem; /* Adjusted */
     }
     .hero-subtitle {
         font-size: 1.3rem;
@@ -404,32 +437,22 @@ a:hover {
     .nav-container {
         flex-direction: column;
     }
+    .logo {
+        margin-bottom: 10px; /* Space below logo */
+    }
     .nav-links {
-        margin-top: 15px;
+        margin-top: 10px; /* Reduced space */
         justify-content: center;
-        flex-wrap: wrap; /* Allow wrapping on small screens */
+        flex-wrap: wrap; 
     }
     .nav-links li {
-        margin: 5px 15px;
+        margin: 5px 10px; /* Reduced spacing */
     }
-    .goals-list, .skills-grid, .badge-grid {
-        grid-template-columns: 1fr; /* Stack items on smaller screens */
+    /* Goals list already handles stacking well due to auto-fit */
+    .skills-grid, .badge-grid {
+        grid-template-columns: 1fr; /* Stack items */
     }
-    /* --- Additions for Badge Date --- */
-.badge-date {
-    font-size: 0.8rem; /* Smaller font size */
-    color: var(--text-muted); /* Muted color */
-    margin-top: 8px; /* Space above the date */
-    font-style: italic; /* Italicize the date */
-    text-align: right; /* Align date to the right */
-}
-
-/* Optional: Adjust spacing if needed */
-.badge-description + .badge-date { /* Add space only if description exists */
-    margin-top: 10px; 
-}
-
-.badge-item img + .badge-date { /* Add space if only image and date */
-     margin-top: 10px;
-}
+    .about-me-text h3, .my-goals-list h3 {
+        font-size: 1.4rem;
+    }
 }
