@@ -3,79 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Het Patel's Portfolio</title>
-    
+    <!-- EDIT THIS: Your Name -->
+    <title>Het Patel // Portfolio Hub</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts: Audiowide & Roboto Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
+    <div class="scanlines"></div> <!-- Scanline effect overlay -->
 
-    <header>
-        <nav>
-            <div class="logo">Het Patel</div>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#badges">Badges</a></li>
-            </ul>
-        </nav>
+    <header class="navbar">
+        <div class="container nav-container">
+            <!-- EDIT THIS: Your Name or Initials -->
+            <a href="index.html" class="logo glitch" data-text="HP">HP</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active">// HOME_BASE</a></li>
+                    <li><a href="skills.html">// SKILLS</a></li>
+                    <li><a href="achievements.html">// ACHIEVEMENTS</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <main>
-        <section id="about" class="container">
-            <h1>Hello, I'm Het Patel.</h1>
-            <p>
-                I am a first-year Computer Science student with a passion for cloud computing,
-                application development, and data analytics. Welcome to my portfolio.
-            </p>
+    <main class="main-content">
+        <!-- ==== HERO SECTION ==== -->
+        <section id="hero" class="hero-section">
+            <div class="container hero-content">
+                <p class="hero-subtitle">// SYSTEM.INITIATE //</p>
+                <h1 class="hero-title glitch" data-text="HET PATEL">
+                    <!-- EDIT THIS: Your Name -->
+                    HET PATEL
+                </h1>
+                <p class="hero-tagline">Computer Engineering Student // Aspiring Data Scientist</p>
+                <a href="#about" class="cta-button">Load Profile <i class="fas fa-arrow-right icon-right"></i></a>
+            </div>
+            <canvas id="matrix-canvas"></canvas> <!-- Matrix effect canvas -->
         </section>
 
-        <section id="skills" class="container">
-            <h2>My Skills</h2>
-            <div class="skill-list">
-                <span>Google Cloud Platform</span>
-                <span>Generative AI</span>
-                <span>Data Management</span>
-                <span>AppSheet & No-Code</span>
-                <span>Infrastructure Modernization</span>
-                <span>Python</span>
-                <span>C Programming</span>
+        <!-- ==== ABOUT ME SECTION ==== -->
+        <section id="about" class="section">
+            <div class="container about-container">
+                 <h2 class="section-title">// PROFILE_DATA</h2>
+                 <div class="terminal-box">
+                     <div class="terminal-header">
+                        <span class="terminal-dot red"></span>
+                        <span class="terminal-dot yellow"></span>
+                        <span class="terminal-dot green"></span>
+                        <span class="terminal-title">~/user_bio.log</span>
+                     </div>
+                     <div class="terminal-body code-font">
+                        <p><span class="prompt">$</span> access bio --level=public</p>
+                        <p class="output">
+                            I’m a passionate and ambitious Computer Engineering student in my 1st year at BVM, driven by curiosity and the desire to grow every single day. Currently, I’m strengthening my foundation in Python, data structures and algorithms, SQL, Machine Learning, and Data Science.
+                        </p>
+                        <p class="output">
+                            I believe in consistency, clarity, and confidence. I don’t chase perfection; I build it step by step through learning, experimenting, and improving. With a mindset focused on growth and innovation, I’m not just preparing for the future – I’m creating it.
+                        </p>
+                        <p><span class="prompt">$</span> <span class="cursor">_</span></p>
+                     </div>
+                 </div>
             </div>
         </section>
 
-        <section id="badges" class="container">
-            <h2>My Google Cloud Badges</h2>
-            <p>I have earned 20+ badges from Google Cloud Skills Boost.</p>
-            
-            <div class="badge-grid">
-                <img src="images/Screenshot (4).jpg" alt="Google Cloud Arcade Badge">
-                <img src="images/Screenshot (5).png" alt="Google Cloud Compute Badge">
-                <img src="images/Screenshot (6).png" alt="Cloud Storage Badge">
-                <img src="images/Screenshot (8).png" alt="Pub/Sub Badge">
-                <img src="images/Screenshot (9).png" alt="API Gateway Badge">
-                <img src="images/Screenshot (10).png" alt="Looker Badge">
-                <img src="images/Screenshot (11).png" alt="Dataplex Badge">
-                <img src="images/Screenshot (12).png" alt="Workspace Tools Badge">
-                <img src="images/Screenshot (13).png" alt="AppSheet Badge">
-                <img src="images/Screenshot (14).png" alt="Build a Website Badge">
-                <img src="images/Screenshot (15).png" alt="Apps Script Badge">
-                <img src="images/Screenshot (16).png" alt="Cloud Network Badge">
-                <img src="images/Screenshot (17).png" alt="Manage Data Badge">
-                <img src="images/Screenshot (18).png" alt="Cloud Functions Badge">
-                <img src="images/Screenshot (19).png" alt="App Engine Badge">
-                <img src="images/Screenshot (20).png" alt="Cloud Speech API Badge">
-                <img src="images/Screenshot (21).png" alt="Monitoring Badge">
-                <img src="images/Screenshot (22).png" alt="Analyze Speech Badge">
-                <img src="images/Screenshot (23).png" alt="Vertex AI Badge">
-                <img src="images/Screenshot (24).png" alt="GenAI Apps Badge">
-                
+         <!-- ==== GOALS SECTION ==== -->
+        <section id="goals" class="section goals-section bg-alt">
+            <div class="container">
+                <h2 class="section-title">// STRATEGIC_OBJECTIVES</h2>
+                <div class="goals-list">
+                    <div class="goal-item card">
+                        <div class="card-icon"><i class="fas fa-brain"></i></div>
+                        <h3>Data Science & ML Expertise</h3>
+                        <p>Become a top-tier engineer, mastering techniques to turn complex data into powerful insights.</p>
+                    </div>
+                    <div class="goal-item card">
+                         <div class="card-icon"><i class="fas fa-cogs"></i></div>
+                        <h3>Impactful Project Development</h3>
+                        <p>Build real-world applications that solve practical problems and showcase advanced technical skills.</p>
+                    </div>
+                    <div class="goal-item card">
+                         <div class="card-icon"><i class="fas fa-keyboard"></i></div>
+                        <h3>Programming Excellence</h3>
+                        <p>Achieve mastery in key languages (Python, C) and modern software development best practices.</p>
+                    </div>
                 </div>
+                 <div class="next-step-link">
+                    <a href="skills.html" class="cta-button secondary">Analyze Skillset <i class="fas fa-arrow-right icon-right"></i></a>
+                </div>
+            </div>
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2025 - Het Patel</p>
+    <footer class="footer">
+        <div class="container">
+            <!-- EDIT THIS: Your Name -->
+            <p>&copy; 2025 Het Patel // System Status: Online</p>
+            <!-- Optional: Add links to GitHub/LinkedIn -->
+            <div class="social-links">
+                <!-- <a href="YOUR_GITHUB_LINK" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a> -->
+                <!-- <a href="YOUR_LINKEDIN_LINK" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a> -->
+            </div>
+        </div>
     </footer>
-
+    
+    <script src="script.js"></script> <!-- Link to JS file for matrix effect -->
 </body>
 </html>
