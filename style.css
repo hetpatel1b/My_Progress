@@ -1,133 +1,418 @@
-/* --- Global Styles --- */
-body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+/* --- Global Styles & Variables --- */
+:root {
+    --bg-dark: #1f1f1f; /* Slightly lighter than pure black */
+    --bg-darker: #1a1a1a;
+    --bg-card: #2c2c2c; /* Card background */
+    --text-light: #f0f0f0;
+    --text-muted: #a0a0a0;
+    --primary-accent: #4dd0e1; /* Vibrant Cyan/Teal */
+    --secondary-accent: #ab47bc; /* Vibrant Purple/Magenta */
+    --border-color: #444;
+    --shadow-light: rgba(0, 0, 0, 0.2);
+    --shadow-medium: rgba(0, 0, 0, 0.4);
+
+    --font-heading: 'Audiowide', sans-serif;
+    --font-body: 'Nunito', sans-serif;
+
+    --max-width: 1100px;
+}
+
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    background-color: #f4f7f6;
-    color: #333;
-    line-height: 1.6;
 }
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    line-height: 1.7;
+    font-size: 16px;
+    display: flex; /* Needed for sticky footer */
+    flex-direction: column; /* Needed for sticky footer */
+    min-height: 100vh; /* Needed for sticky footer */
+}
+
+.page-wrapper {
+    flex: 1; /* Needed for sticky footer */
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex-grow: 1; /* Make main content area expand */
+}
+
 
 .container {
-    max-width: 1000px;
-    margin: 40px auto;
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 25px; /* Slightly more padding */
 }
 
-h1 {
-    font-size: 2.5em;
-    color: #0d47a1; /* Dark Blue */
-    margin-bottom: 10px;
+.section {
+    padding: 80px 0; /* More vertical space */
 }
 
-h2 {
-    font-size: 2em;
-    color: #1565c0; /* Medium Blue */
-    border-bottom: 2px solid #eee;
-    padding-bottom: 10px;
-    margin-top: 0;
+.bg-darker {
+    background-color: var(--bg-darker);
 }
 
-p {
-    font-size: 1.1em;
-    color: #555;
+.section-title {
+    font-family: var(--font-heading);
+    font-size: 2.5rem; /* Adjusted size */
+    font-weight: 400; /* Audiowide is bold by default */
+    text-align: center;
+    margin-bottom: 25px;
+    color: var(--primary-accent);
+    letter-spacing: 1px;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    margin-bottom: 50px;
+    font-size: 1.1rem;
+    max-width: 700px; /* Constrain width */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
 }
 
 a {
-    color: #1976d2; /* Link Blue */
     text-decoration: none;
+    color: var(--primary-accent);
+    transition: color 0.3s ease;
+}
+a:hover {
+    color: var(--secondary-accent);
 }
 
-/* --- Header and Navigation --- */
-header {
-    background-color: #1976d2; /* Google Blue */
-    color: white;
-    padding: 15px 40px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+/* --- Navbar --- */
+.navbar {
+    background-color: rgba(31, 31, 31, 0.85); /* Semi-transparent dark bg */
+    backdrop-filter: blur(10px); /* Frosted glass effect */
+    padding: 20px 0;
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 1000;
+    border-bottom: 1px solid var(--border-color);
 }
 
-nav {
+.nav-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1000px;
-    margin: 0 auto;
 }
 
-nav .logo {
-    font-size: 1.5em;
-    font-weight: bold;
+.logo {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 400;
+    color: var(--text-light);
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+}
+.logo:hover {
+    color: var(--primary-accent);
 }
 
-nav ul {
+.nav-links {
     list-style: none;
-    margin: 0;
-    padding: 0;
     display: flex;
 }
 
-nav ul li {
-    margin-left: 25px;
+.nav-links li {
+    margin-left: 35px;
 }
 
-nav ul li a {
-    color: white;
-    font-size: 1em;
-    font-weight: 500;
-    padding: 5px 0;
-    transition: border-bottom 0.2s;
+.nav-links a {
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 1rem;
+    padding-bottom: 5px;
+    border-bottom: 2px solid transparent;
+    transition: color 0.3s ease, border-color 0.3s ease;
 }
 
-nav ul li a:hover {
-    border-bottom: 2px solid white;
+.nav-links a:hover {
+    color: var(--text-light);
+    border-bottom-color: var(--primary-accent);
 }
 
-/* --- Skills Section --- */
-.skill-list {
+.nav-links a.active { /* Style for the current page link */
+    color: var(--primary-accent);
+    border-bottom-color: var(--primary-accent);
+}
+
+/* --- Hero Section (index.html) --- */
+.hero-section {
+    min-height: 70vh; /* Taller hero */
     display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(rgba(31, 31, 31, 0.7), rgba(31, 31, 31, 0.9)), var(--bg-dark);
+    /* Optional: Add subtle background pattern or image later */
+    padding: 80px 0;
 }
 
-.skill-list span {
-    background-color: #e3f2fd; /* Light Blue */
-    color: #0d47a1; /* Dark Blue */
-    padding: 8px 15px;
-    border-radius: 20px;
-    font-size: 0.9em;
-    font-weight: 500;
+.hero-content {
+    max-width: 800px;
 }
 
-/* --- Badge Grid Section --- */
+.hero-title {
+    font-family: var(--font-heading);
+    font-size: 4rem;
+    color: var(--text-light);
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    color: var(--primary-accent);
+    margin-bottom: 20px;
+    font-weight: 400;
+}
+
+.hero-description {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    margin-bottom: 35px;
+}
+
+/* --- Call to Action Button --- */
+.cta-button {
+    display: inline-block;
+    background: linear-gradient(90deg, var(--primary-accent), var(--secondary-accent));
+    color: var(--bg-darker);
+    padding: 14px 30px;
+    border-radius: 50px; /* Pill shape */
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.cta-button:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 10px 20px rgba(77, 208, 225, 0.3); /* Glow effect */
+    color: var(--bg-darker); /* Ensure text color stays on hover */
+}
+
+.cta-button .arrow {
+    display: inline-block;
+    margin-left: 8px;
+    transition: transform 0.3s ease;
+}
+
+.cta-button:hover .arrow {
+    transform: translateX(5px);
+}
+
+.cta-button.secondary {
+    background: transparent;
+    border: 2px solid var(--primary-accent);
+    color: var(--primary-accent);
+}
+.cta-button.secondary:hover {
+    background: var(--primary-accent);
+    color: var(--bg-darker);
+    box-shadow: 0 5px 15px rgba(77, 208, 225, 0.2);
+}
+
+
+/* --- Goals Section (index.html) --- */
+.goals-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.goal-item {
+    background-color: var(--bg-card);
+    padding: 30px;
+    border-radius: 8px;
+    border-left: 5px solid var(--primary-accent);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.goal-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px var(--shadow-medium);
+}
+
+.goal-item h3 {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    color: var(--text-light);
+}
+
+.goal-item p {
+    color: var(--text-muted);
+    font-size: 1rem;
+}
+
+/* --- About Site Section (index.html) --- */
+.about-site-content {
+    max-width: 800px;
+    text-align: center;
+}
+.about-site-content p {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    color: var(--text-muted);
+}
+.about-site-content .cta-button {
+    margin-top: 20px;
+}
+
+
+/* --- Skills Section (achievements.html) --- */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.skill-card {
+    background-color: var(--bg-card);
+    padding: 30px;
+    border-radius: 8px;
+    text-align: center;
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.skill-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px var(--shadow-medium);
+    border-color: var(--primary-accent);
+}
+
+.skill-card i { /* Font Awesome Icons */
+    font-size: 3rem;
+    color: var(--primary-accent);
+    margin-bottom: 20px;
+    display: block; /* Ensure icon takes space */
+}
+
+.skill-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    font-weight: 400;
+    color: var(--text-light);
+}
+
+.skill-card p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}
+
+/* --- Badges/Achievements Section (achievements.html) --- */
 .badge-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
+    gap: 30px;
+    align-items: start; /* Align items to the top */
 }
 
-.badge-grid img {
+/* Style for the container div around each badge */
+.badge-item {
+    background-color: var(--bg-card); /* Give items a background */
+    border-radius: 8px;
+    padding: 15px; /* Add padding inside the item */
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex; /* Use flexbox for image + description */
+    flex-direction: column; /* Stack image and description vertically */
+    height: 100%; /* Make items fill grid cell height if needed */
+}
+
+.badge-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px var(--shadow-medium);
+}
+
+.badge-item img {
     width: 100%;
     height: auto;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    border-radius: 4px; /* Slightly smaller radius for image inside */
+    background-color: #fff; /* White background for badge image */
+    padding: 5px; 
+    border: 1px solid #ddd; 
+    margin-bottom: 10px; /* Space between image and description */
+    /* Remove transitions from img if they were on the container now */
+    transition: none; 
+    box-shadow: none;
 }
 
-.badge-grid img:hover {
-    transform: scale(1.03);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+/* Style for the badge description paragraph */
+.badge-description {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-top: auto; /* Push description towards bottom if container is taller */
 }
+
+/* Optional: Slightly different style for the featured badge */
+.featured-badge {
+    border-left: 5px solid var(--secondary-accent); /* Add a side accent */
+}
+
 
 /* --- Footer --- */
-footer {
+.footer {
+    background-color: var(--bg-darker);
+    color: var(--text-muted);
     text-align: center;
-    padding: 20px;
-    font-size: 0.9em;
-    color: #888;
+    padding: 30px 0;
+    margin-top: auto; /* Push footer to bottom */
+    border-top: 1px solid var(--border-color);
+}
+
+.footer p {
+    font-size: 0.9rem;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 2rem;
+    }
+    .hero-title {
+        font-size: 3rem;
+    }
+    .hero-subtitle {
+        font-size: 1.3rem;
+    }
+    .nav-container {
+        flex-direction: column;
+    }
+    .nav-links {
+        margin-top: 15px;
+        justify-content: center;
+        flex-wrap: wrap; /* Allow wrapping on small screens */
+    }
+    .nav-links li {
+        margin: 5px 15px;
+    }
+    .goals-list, .skills-grid, .badge-grid {
+        grid-template-columns: 1fr; /* Stack items on smaller screens */
+    }
 }
