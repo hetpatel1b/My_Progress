@@ -1,24 +1,19 @@
 /* --- Global Styles & Variables --- */
 :root {
-    --bg-dark: #1f1f1f; 
-    --bg-darker: #1a1a1a;
-    --bg-card: #2c2c2c; 
-    --text-light: #f0f0f0;
-    --text-muted: #a0a0a0;
-    --primary-accent: #00e5ff; /* Brighter Cyan */
-    --secondary-accent: #ff4081; /* Vibrant Pink */
-    --border-color: #444;
-    --shadow-light: rgba(0, 0, 0, 0.2);
-    --shadow-medium: rgba(0, 0, 0, 0.4);
+    --bg-dark-navy: #0a0a1a;    /* Deep navy blue */
+    --bg-mid-navy: #1a1a2e;     /* Slightly lighter navy */
+    --accent-cyan: #00f7ff;     /* Bright neon cyan */
+    --accent-magenta: #ff00ff;   /* Bright neon magenta */
+    --text-light: #e0e0e0;     /* Light grey text */
+    --text-muted: #8892b0;     /* Muted grey/blue text */
+    --border-glow: rgba(0, 247, 255, 0.3); /* Cyan glow for borders */
+    --shadow-glow: rgba(0, 247, 255, 0.15); /* Cyan glow for shadows */
 
-    /* UPDATED FONTS */
-    --font-heading: 'Orbitron', sans-serif;         /* Main Headings */
-    --font-body: 'Fira Sans', sans-serif;          /* Default Body */
-    --font-about: 'Share Tech Mono', monospace;  /* Specific for About Me */
-    --font-goals: 'Rajdhani', sans-serif;        /* Specific for Goals */
-
+    --font-heading: 'Audiowide', sans-serif; /* Techy block font */
+    --font-body: 'Roboto Mono', monospace;   /* Monospaced code font */
 
     --max-width: 1100px;
+    --navbar-height: 70px; /* Define navbar height */
 }
 
 * {
@@ -29,61 +24,107 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: var(--navbar-height); /* Offset scroll position */
 }
 
 body {
-    font-family: var(--font-body); /* Default body font */
-    background-color: var(--bg-dark);
+    font-family: var(--font-body);
+    background-color: var(--bg-dark-navy);
     color: var(--text-light);
     line-height: 1.7;
-    font-size: 16px;
-    display: flex; 
-    flex-direction: column; 
-    min-height: 100vh; 
+    font-size: 16px; /* Base font size */
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    position: relative; /* Needed for scanlines */
 }
 
-.page-wrapper {
-    flex: 1; 
+/* Subtle Scanline Effect */
+.scanlines {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        rgba(10, 10, 26, 0) 50%,
+        rgba(0, 0, 0, 0.1) 50%
+    );
+    background-size: 100% 4px; /* Adjust size for scanline thickness */
+    opacity: 0.3;
+    pointer-events: none; /* Allows clicking through */
+    z-index: 9999;
+}
+
+/* Content wrapper to be above scanlines */
+.content-wrapper {
+    position: relative;
+    z-index: 1;
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
 }
 
-main {
-    flex-grow: 1; 
+main.main-content {
+    flex-grow: 1; /* Ensure main content fills space */
+    padding-top: var(--navbar-height); /* Prevent content overlap below fixed navbar */
+}
+
+/* Added padding for inner pages */
+.page-padding .section {
+     padding-top: 40px; /* Reduced top padding for inner pages */
+     padding-bottom: 60px;
+}
+.page-padding .page-title {
+    margin-bottom: 30px; /* Less margin below main page title */
 }
 
 
 .container {
     max-width: var(--max-width);
     margin: 0 auto;
-    padding: 0 25px; 
+    padding: 0 20px;
 }
 
 .section {
-    padding: 80px 0; 
+    padding: 80px 0;
 }
 
-.bg-darker {
-    background-color: var(--bg-darker);
+.bg-alt {
+    background-color: var(--bg-mid-navy);
+}
+
+.section-title, .page-title, .subsection-title {
+    font-family: var(--font-heading);
+    color: var(--accent-cyan);
+    text-align: center;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 15px; /* Base margin */
 }
 
 .section-title {
-    font-family: var(--font-heading);
-    font-size: 2.5rem; 
-    font-weight: 700; 
-    text-align: center;
-    margin-bottom: 25px;
-    color: var(--primary-accent);
-    letter-spacing: 1.5px; 
-    text-transform: uppercase; 
+    font-size: clamp(1.8rem, 5vw, 2.5rem); /* Responsive font size */
+}
+.page-title {
+     font-size: clamp(2.2rem, 6vw, 3rem); /* Larger for main page title */
+     margin-bottom: 10px;
+}
+.subsection-title {
+    font-size: clamp(1.5rem, 4vw, 1.8rem); /* Slightly smaller */
+    color: var(--text-light); /* Less prominent color */
+    text-align: left;
+    margin-top: 60px; /* Space above subsection */
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--border-glow);
+    padding-bottom: 10px;
 }
 
 .section-subtitle {
     text-align: center;
     color: var(--text-muted);
     margin-bottom: 50px;
-    font-size: 1.1rem;
-    max-width: 700px; 
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+    max-width: 700px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -96,40 +137,43 @@ img {
 
 a {
     text-decoration: none;
-    color: var(--primary-accent);
-    transition: color 0.3s ease;
+    color: var(--accent-cyan);
+    transition: color 0.2s ease-in-out;
 }
 a:hover {
-    color: var(--secondary-accent);
+    color: var(--accent-magenta);
 }
 
 /* --- Navbar --- */
 .navbar {
-    background-color: rgba(31, 31, 31, 0.85); 
-    backdrop-filter: blur(10px); 
-    padding: 20px 0;
-    position: sticky;
+    background-color: rgba(10, 10, 26, 0.85); /* Dark navy semi-transparent */
+    backdrop-filter: blur(8px);
+    padding: 15px 0;
+    position: fixed; /* Make navbar fixed */
+    width: 100%;
     top: 0;
+    left: 0;
     z-index: 1000;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid rgba(0, 247, 255, 0.1); /* Subtle glow border */
+    height: var(--navbar-height); /* Set height */
+    display: flex;
+    align-items: center;
 }
 
 .nav-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
 }
 
 .logo {
     font-family: var(--font-heading);
-    font-size: 1.8rem;
-    font-weight: 700;
+    font-size: 1.6rem;
+    font-weight: 400; /* Audiowide is bold */
     color: var(--text-light);
-    letter-spacing: 2px; 
+    letter-spacing: 1px;
     transition: color 0.3s ease;
-}
-.logo:hover {
-    color: var(--primary-accent);
 }
 
 .nav-links {
@@ -138,338 +182,431 @@ a:hover {
 }
 
 .nav-links li {
-    margin-left: 35px;
+    margin-left: 30px;
 }
 
 .nav-links a {
     color: var(--text-muted);
-    font-weight: 600;
-    font-size: 1rem;
+    font-family: var(--font-body); /* Use body font */
+    font-weight: 500;
+    font-size: 0.9rem;
     padding-bottom: 5px;
     border-bottom: 2px solid transparent;
     transition: color 0.3s ease, border-color 0.3s ease;
-    text-transform: uppercase; 
+    text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 
 .nav-links a:hover {
     color: var(--text-light);
-    border-bottom-color: var(--primary-accent);
+    border-bottom-color: var(--accent-cyan);
 }
 
-.nav-links a.active { 
-    color: var(--primary-accent);
-    border-bottom-color: var(--primary-accent);
+.nav-links a.active {
+    color: var(--accent-cyan);
+    border-bottom-color: var(--accent-cyan);
 }
 
-/* --- Hero Section (index.html) --- */
+/* --- Glitch Effect --- */
+.glitch {
+    position: relative;
+    color: var(--text-light);
+    text-shadow:
+        0.05em 0 0 rgba(255, 0, 0, 0.75),
+        -0.025em -0.05em 0 rgba(0, 255, 0, 0.75),
+        0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+    animation: glitch 500ms infinite;
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-dark-navy); /* Match background */
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+}
+
+.glitch::before {
+    left: 2px;
+    text-shadow: -1px 0 var(--accent-magenta);
+    animation: glitch-before 2s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+    left: -2px;
+    text-shadow: -1px 0 var(--accent-cyan);
+    animation: glitch-after 1.5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch { 20%, 60% { transform: translate(2px, 0); } 40%, 80% { transform: translate(-2px, 0); } 100% { transform: translate(0, 0); } }
+@keyframes glitch-before { 0% { clip: rect(44px, 9999px, 56px, 0); } 5%, 8% { clip: rect(100px, 9999px, 99px, 0); } 10% { clip: rect(120px, 9999px, 60px, 0); } /* ... (add more clip variations) */ 100% { clip: rect(90px, 9999px, 140px, 0); } }
+@keyframes glitch-after { 0% { clip: rect(65px, 9999px, 119px, 0); } 3%, 7% { clip: rect(50px, 9999px, 70px, 0); } 12% { clip: rect(30px, 9999px, 100px, 0); } /* ... (add more clip variations) */ 100% { clip: rect(130px, 9999px, 80px, 0); } }
+
+
+/* --- Hero Section --- */
 .hero-section {
-    min-height: 70vh; 
+    min-height: calc(100vh - var(--navbar-height)); /* Full viewport height minus navbar */
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    background: linear-gradient(rgba(31, 31, 31, 0.8), rgba(31, 31, 31, 0.95)), var(--bg-dark);
-    padding: 80px 0;
+    position: relative; /* Needed for canvas */
+    overflow: hidden; /* Hide canvas overflow */
+    padding: 60px 0;
+}
+#matrix-canvas { /* Canvas for matrix effect */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Behind content */
+    opacity: 0.15; /* Make it subtle */
 }
 
 .hero-content {
+    position: relative; /* Above canvas */
+    z-index: 1;
     max-width: 800px;
 }
 
 .hero-title {
     font-family: var(--font-heading);
-    font-size: 3.5rem; 
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
     color: var(--text-light);
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     letter-spacing: 2px;
-    font-weight: 700;
+    font-weight: 400; /* Audiowide is bold */
     text-transform: uppercase;
 }
 
 .hero-subtitle {
-    font-size: 1.5rem;
-    color: var(--primary-accent);
+    font-size: clamp(1rem, 3vw, 1.3rem);
+    color: var(--accent-cyan);
     margin-bottom: 20px;
-    font-weight: 400; /* Use default body font weight */
+    font-weight: 400;
+    font-family: var(--font-body); /* Monospace for subtitle too */
+}
+.hero-tagline {
+    font-size: clamp(1.1rem, 3.5vw, 1.5rem);
+    color: var(--accent-cyan);
+    margin-bottom: 25px;
+    font-weight: 500; /* Slightly bolder */
+    font-family: var(--font-body);
 }
 
 .hero-description {
-    font-size: 1.2rem;
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
     color: var(--text-muted);
-    margin-bottom: 35px;
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+.hero-description.terminal-text {
+    text-align: left;
+    background: rgba(0,0,0,0.3);
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid var(--border-glow);
+    display: inline-block; /* Fit content */
 }
 
-/* --- Call to Action Button --- */
+/* --- Buttons --- */
 .cta-button {
-    display: inline-block;
-    background: linear-gradient(90deg, var(--primary-accent), var(--secondary-accent));
-    color: var(--bg-darker);
-    padding: 14px 30px;
-    border-radius: 50px; 
-    font-weight: 600;
-    font-size: 1.1rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: none;
+    display: inline-flex; /* Use flex for icon alignment */
+    align-items: center;
+    justify-content: center;
+    background: var(--accent-cyan);
+    color: var(--bg-dark-navy);
+    padding: 12px 28px;
+    border-radius: 4px; /* Sharper edges */
+    font-weight: 500;
+    font-size: 1rem;
+    font-family: var(--font-body); /* Monospace */
+    transition: all 0.2s ease-in-out;
+    border: 1px solid var(--accent-cyan);
     cursor: pointer;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.8px;
+    box-shadow: 0 0 10px 0 var(--shadow-glow);
 }
 
 .cta-button:hover {
-    transform: translateY(-3px) scale(1.03);
-    box-shadow: 0 10px 20px rgba(0, 229, 255, 0.3); /* Cyan Glow effect */
-    color: var(--bg-darker); 
+    background: transparent;
+    color: var(--accent-cyan);
+    box-shadow: 0 0 15px 3px var(--shadow-glow);
+    transform: translateY(-2px);
 }
 
-.cta-button .arrow {
-    display: inline-block;
-    margin-left: 8px;
-    transition: transform 0.3s ease;
+.cta-button .icon-right {
+    margin-left: 10px;
+    transition: transform 0.2s ease-in-out;
 }
 
-.cta-button:hover .arrow {
-    transform: translateX(5px);
+.cta-button:hover .icon-right {
+    transform: translateX(4px);
 }
 
 .cta-button.secondary {
     background: transparent;
-    border: 2px solid var(--primary-accent);
-    color: var(--primary-accent);
+    border: 1px solid var(--accent-cyan);
+    color: var(--accent-cyan);
+    box-shadow: none;
 }
 .cta-button.secondary:hover {
-    background: var(--primary-accent);
-    color: var(--bg-darker);
-    box-shadow: 0 5px 15px rgba(0, 229, 255, 0.2);
+    background: var(--accent-cyan);
+    color: var(--bg-dark-navy);
+    box-shadow: 0 0 15px 3px var(--shadow-glow);
 }
 
-/* --- About Me & Goals Section (index.html) --- */
-.about-goals-section {
-    /* Container for the whole section */
+/* --- Terminal Box --- */
+.terminal-box {
+    background-color: #000;
+    border: 1px solid var(--border-glow);
+    border-radius: 6px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+    overflow: hidden;
+    margin-top: 30px;
 }
-
-.about-goals-content {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Adjusted min width */
-    gap: 60px; /* Increased gap for less congestion */
-    align-items: start; 
+.terminal-header {
+    background-color: #333;
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
 }
-
-/* Styles for subheadings in this section */
-.about-me-text h3, .my-goals-list h3 {
-    font-family: var(--font-heading);
-    font-size: 1.8rem; /* Slightly larger subheading */
-    margin-bottom: 25px; /* More space below subheading */
-    color: var(--text-light);
-    font-weight: 700;
-    border-bottom: 3px solid var(--primary-accent); /* Thicker border */
-    padding-bottom: 12px;
-    display: inline-block; 
-}
-
-/* Apply specific font to About Me text */
-.about-me-text p {
-    font-family: var(--font-about); /* APPLY UNIQUE FONT */
-    color: var(--text-muted);
-    font-size: 1.1rem; /* Increase font size slightly */
-    line-height: 1.8;  /* Increase line spacing */
-    margin-bottom: 20px; /* More space between paragraphs */
-    letter-spacing: 0.5px; /* Slight letter spacing for mono */
-}
-
-/* Apply specific font to Goals list */
-.my-goals-list ul {
-    list-style: none;
-    padding-left: 0;
-}
-
-.my-goals-list li {
-    font-family: var(--font-goals); /* APPLY UNIQUE FONT */
-    color: var(--text-muted);
-    font-size: 1.15rem; /* Increase font size slightly */
-    margin-bottom: 20px; /* More space between goals */
-    display: flex; 
-    align-items: flex-start; 
-    font-weight: 400; /* Regular weight for Rajdhani */
-    letter-spacing: 0.3px;
-}
-
-.goal-icon {
-    font-size: 1.3rem; /* Slightly larger icon */
-    margin-right: 15px; /* More space next to icon */
-    color: var(--primary-accent);
+.terminal-dot {
     display: inline-block;
-    min-width: 30px; /* Ensure space for icon */
-    text-align: center;
-    margin-top: 2px; /* Align icon slightly better */
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 6px;
 }
-
-.my-goals-list .cta-button { 
-    margin-top: 30px; /* More space above button */
-}
-
-
-/* --- Skills Section (achievements.html) --- */
-.skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-}
-
-.skill-card {
-    background-color: var(--bg-card);
-    padding: 30px;
-    border-radius: 8px;
-    text-align: center;
-    border: 1px solid var(--border-color);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-}
-
-.skill-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 10px 25px var(--shadow-medium);
-    border-color: var(--primary-accent);
-}
-
-.skill-card i { /* Font Awesome Icons */
-    font-size: 3rem;
-    color: var(--primary-accent);
-    margin-bottom: 20px;
-    display: block; 
-}
-
-.skill-card h3 {
-    font-family: var(--font-heading); /* Use main heading font */
-    font-size: 1.3rem;
-    margin-bottom: 10px;
-    font-weight: 700;
-    color: var(--text-light);
-    text-transform: uppercase;
-}
-
-.skill-card p {
-    font-family: var(--font-body); /* Use default body font */
-    font-size: 0.95rem;
+.terminal-dot.red { background-color: #ff5f56; }
+.terminal-dot.yellow { background-color: #ffbd2e; }
+.terminal-dot.green { background-color: #27c93f; }
+.terminal-title {
     color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-left: auto; /* Push title to the right */
+}
+.terminal-body {
+    padding: 20px;
+    font-size: 0.95rem;
+    line-height: 1.8;
+}
+.terminal-body .prompt {
+    color: var(--accent-cyan);
+    margin-right: 8px;
+}
+.terminal-body .output {
+    color: var(--text-light);
+    margin-bottom: 1em; /* Space between outputs */
+}
+.terminal-body .cursor {
+    display: inline-block;
+    background-color: var(--text-light);
+    width: 8px;
+    height: 1.2em;
+    animation: blink 1s step-end infinite;
+    vertical-align: bottom;
+}
+@keyframes blink { 50% { opacity: 0; } }
+.code-font {
+    font-family: var(--font-body); /* Ensure terminal uses mono font */
 }
 
-/* --- Badges/Achievements Section (achievements.html) --- */
-.badge-grid {
+
+/* --- Goals Section --- */
+.goals-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
-    align-items: start; 
+    margin-top: 40px;
 }
 
-.badge-item {
-    background-color: var(--bg-card); 
-    border-radius: 8px;
-    padding: 15px; 
-    border: 1px solid var(--border-color);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex; 
-    flex-direction: column; 
-    height: 100%; 
+/* --- Cards (Used for Goals, Skills, Achievements) --- */
+.card {
+    background-color: var(--bg-mid-navy);
+    padding: 25px;
+    border-radius: 5px;
+    border: 1px solid transparent; /* Start transparent */
+    border-left: 3px solid var(--accent-cyan); /* Accent on left */
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
-.badge-item:hover {
+.card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px var(--shadow-medium);
+    border-color: var(--border-glow); /* Glow border on hover */
+    box-shadow: 0 8px 15px var(--shadow-glow);
 }
 
-.badge-item img {
+.card-icon {
+    font-size: 2.5rem;
+    color: var(--accent-cyan);
+    margin-bottom: 15px;
+    text-align: center; /* Center icon */
+}
+
+.card h3 { /* Consistent heading style for cards */
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: var(--text-light);
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.card p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    text-align: center;
+}
+
+/* --- Next Step Link Styling --- */
+.next-step-link {
+    text-align: center;
+    margin-top: 50px;
+}
+
+/* --- Skills Page --- */
+.skills-page-section .section-subtitle {
+     margin-bottom: 60px; /* More space before grid */
+}
+.skills-grid {
+     /* Uses card-grid styles */
+}
+.skill-item .card-icon {
+    font-size: 3rem; /* Slightly larger icons for skills */
+}
+.skill-item p {
+    font-size: 0.9rem; /* Smaller text for skill details */
+    line-height: 1.5;
+}
+
+
+/* --- Achievements Page --- */
+.achievements-page-section {
+     /* General section styles apply */
+}
+
+.badge-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    align-items: stretch; /* Make cards same height */
+}
+
+.achievement-item { /* Inherits from .card */
+    display: flex;
+    flex-direction: column; /* Stack elements */
+    text-align: center;
+}
+
+.achievement-item img {
     width: 100%;
     height: auto;
-    border-radius: 4px; 
-    background-color: #fff; 
-    padding: 5px; 
-    border: 1px solid #ddd; 
-    margin-bottom: 10px; 
-    transition: none; 
-    box-shadow: none;
+    border-radius: 4px;
+    background-color: #fff; /* Ensure white bg for badges */
+    padding: 8px; /* Padding around image */
+    border: 1px solid #ddd;
+    margin-bottom: 15px; /* Space below image */
+    max-height: 200px; /* Optional: Constrain image height */
+    object-fit: contain; /* Fit image within constraints */
 }
 
-.badge-description {
-    font-family: var(--font-body); /* Use default body font */
-    font-size: 0.9rem;
+.achievement-title { /* Using card h3 style */
+    font-size: 1.1rem; /* Adjust title size */
+}
+
+.achievement-desc { /* Using card p style */
+    flex-grow: 1; /* Allow description to take space */
+    margin-bottom: 10px;
+}
+
+.achievement-date {
+    font-size: 0.8rem;
     color: var(--text-muted);
-    line-height: 1.5;
-    margin-top: auto; 
+    margin-top: auto; /* Push date to bottom */
+    padding-top: 10px;
+    border-top: 1px dashed var(--border-color); /* Separator */
+    width: 80%; /* Limit separator width */
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.badge-date {
-    font-family: var(--font-body); /* Use default body font */
-    font-size: 0.8rem; 
-    color: var(--text-muted); 
-    margin-top: 8px; 
-    font-style: italic; 
-    text-align: right; 
+.achievement-item.featured {
+    border-left-color: var(--accent-magenta); /* Highlight featured item */
 }
 
-.badge-description + .badge-date { 
-    margin-top: 10px; 
+.other-certs-list {
+    margin-top: 20px;
 }
-
-.badge-item img + .badge-date { 
-     margin-top: 10px;
+.other-certs-list p { /* Style for the placeholder text */
+    color: var(--text-muted);
+    font-style: italic;
+    text-align: center;
 }
-
-.featured-badge {
-    border-left: 5px solid var(--secondary-accent); 
+.other-cert-item { /* Uses .card style */
+    margin-bottom: 20px; /* Space between other certs */
 }
-
 
 /* --- Footer --- */
 .footer {
-    background-color: var(--bg-darker);
+    background-color: var(--bg-mid-navy);
     color: var(--text-muted);
     text-align: center;
-    padding: 30px 0;
-    margin-top: auto; 
-    border-top: 1px solid var(--border-color);
-}
-
-.footer p {
-    font-family: var(--font-body); /* Use default body font */
+    padding: 25px 0;
+    margin-top: auto; /* Stick to bottom */
+    border-top: 1px solid rgba(0, 247, 255, 0.1);
     font-size: 0.9rem;
 }
-
-/* --- Responsive Design --- */
-@media (max-width: 900px) {
-    .about-goals-content {
-        grid-template-columns: 1fr; /* Stack about and goals on medium screens */
-    }
+.social-links {
+    margin-top: 10px;
+}
+.social-links a {
+    color: var(--text-muted);
+    font-size: 1.3rem;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+.social-links a:hover {
+    color: var(--accent-cyan);
 }
 
+/* --- Responsive Adjustments --- */
 @media (max-width: 768px) {
-    .section-title {
-        font-size: 2rem;
-    }
-    .hero-title {
-        font-size: 2.8rem; 
-    }
-    .hero-subtitle {
-        font-size: 1.3rem;
-    }
     .nav-container {
         flex-direction: column;
     }
     .logo {
-        margin-bottom: 10px; 
+        margin-bottom: 10px;
     }
     .nav-links {
-        margin-top: 10px; 
+        margin-top: 10px;
         justify-content: center;
-        flex-wrap: wrap; 
+        flex-wrap: wrap;
     }
     .nav-links li {
-        margin: 5px 10px; 
+        margin: 5px 10px;
     }
-    /* Goals list already handles stacking well due to auto-fit */
-    .skills-grid, .badge-grid {
-        grid-template-columns: 1fr; /* Stack items */
+    .hero-title {
+        font-size: clamp(2rem, 10vw, 3rem); /* Adjust hero title size */
     }
-    .about-me-text h3, .my-goals-list h3 {
-        font-size: 1.6rem; /* Adjust subheadings */
+    .hero-tagline {
+        font-size: clamp(1rem, 4vw, 1.3rem);
+    }
+    .section-title, .page-title {
+        font-size: clamp(1.6rem, 6vw, 2.2rem);
+    }
+     .subsection-title {
+        font-size: clamp(1.3rem, 5vw, 1.6rem);
+    }
+    .card-grid, .goals-list, .skills-grid, .badge-grid {
+        grid-template-columns: 1fr; /* Stack cards */
     }
 }
