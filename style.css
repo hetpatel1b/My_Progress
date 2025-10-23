@@ -11,9 +11,12 @@
     --shadow-light: rgba(0, 0, 0, 0.2);
     --shadow-medium: rgba(0, 0, 0, 0.4);
 
-    /* NEW FONTS */
-    --font-heading: 'Orbitron', sans-serif; /* Futuristic/Tech */
-    --font-body: 'Fira Sans', sans-serif;   /* Clean Sans-serif */
+    /* UPDATED FONTS */
+    --font-heading: 'Orbitron', sans-serif;         /* Main Headings */
+    --font-body: 'Fira Sans', sans-serif;          /* Default Body */
+    --font-about: 'Share Tech Mono', monospace;  /* Specific for About Me */
+    --font-goals: 'Rajdhani', sans-serif;        /* Specific for Goals */
+
 
     --max-width: 1100px;
 }
@@ -29,7 +32,7 @@ html {
 }
 
 body {
-    font-family: var(--font-body);
+    font-family: var(--font-body); /* Default body font */
     background-color: var(--bg-dark);
     color: var(--text-light);
     line-height: 1.7;
@@ -67,12 +70,12 @@ main {
 .section-title {
     font-family: var(--font-heading);
     font-size: 2.5rem; 
-    font-weight: 700; /* Orbitron might need explicit bold */
+    font-weight: 700; 
     text-align: center;
     margin-bottom: 25px;
     color: var(--primary-accent);
-    letter-spacing: 1.5px; /* More spacing for Orbitron */
-    text-transform: uppercase; /* Titles in uppercase */
+    letter-spacing: 1.5px; 
+    text-transform: uppercase; 
 }
 
 .section-subtitle {
@@ -122,7 +125,7 @@ a:hover {
     font-size: 1.8rem;
     font-weight: 700;
     color: var(--text-light);
-    letter-spacing: 2px; /* More spacing for Orbitron logo */
+    letter-spacing: 2px; 
     transition: color 0.3s ease;
 }
 .logo:hover {
@@ -145,7 +148,7 @@ a:hover {
     padding-bottom: 5px;
     border-bottom: 2px solid transparent;
     transition: color 0.3s ease, border-color 0.3s ease;
-    text-transform: uppercase; /* Nav links uppercase */
+    text-transform: uppercase; 
     letter-spacing: 0.5px;
 }
 
@@ -176,7 +179,7 @@ a:hover {
 
 .hero-title {
     font-family: var(--font-heading);
-    font-size: 3.5rem; /* Slightly adjusted */
+    font-size: 3.5rem; 
     color: var(--text-light);
     margin-bottom: 10px;
     letter-spacing: 2px;
@@ -188,7 +191,7 @@ a:hover {
     font-size: 1.5rem;
     color: var(--primary-accent);
     margin-bottom: 20px;
-    font-weight: 400; /* Fira Sans regular */
+    font-weight: 400; /* Use default body font weight */
 }
 
 .hero-description {
@@ -242,57 +245,67 @@ a:hover {
 
 /* --- About Me & Goals Section (index.html) --- */
 .about-goals-section {
-    /* Style for the whole section if needed */
+    /* Container for the whole section */
 }
 
 .about-goals-content {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive columns */
-    gap: 50px; /* Space between about and goals */
-    align-items: start; /* Align items to top */
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Adjusted min width */
+    gap: 60px; /* Increased gap for less congestion */
+    align-items: start; 
 }
 
+/* Styles for subheadings in this section */
 .about-me-text h3, .my-goals-list h3 {
     font-family: var(--font-heading);
-    font-size: 1.6rem;
-    margin-bottom: 20px;
+    font-size: 1.8rem; /* Slightly larger subheading */
+    margin-bottom: 25px; /* More space below subheading */
     color: var(--text-light);
     font-weight: 700;
-    border-bottom: 2px solid var(--primary-accent);
-    padding-bottom: 10px;
-    display: inline-block; /* Make border only as wide as text */
+    border-bottom: 3px solid var(--primary-accent); /* Thicker border */
+    padding-bottom: 12px;
+    display: inline-block; 
 }
 
+/* Apply specific font to About Me text */
 .about-me-text p {
+    font-family: var(--font-about); /* APPLY UNIQUE FONT */
     color: var(--text-muted);
-    font-size: 1.05rem; /* Slightly larger body text */
-    margin-bottom: 15px;
+    font-size: 1.1rem; /* Increase font size slightly */
+    line-height: 1.8;  /* Increase line spacing */
+    margin-bottom: 20px; /* More space between paragraphs */
+    letter-spacing: 0.5px; /* Slight letter spacing for mono */
 }
 
+/* Apply specific font to Goals list */
 .my-goals-list ul {
     list-style: none;
     padding-left: 0;
 }
 
 .my-goals-list li {
+    font-family: var(--font-goals); /* APPLY UNIQUE FONT */
     color: var(--text-muted);
-    font-size: 1.05rem;
-    margin-bottom: 15px;
-    display: flex; /* Align icon and text */
-    align-items: flex-start; /* Align icon to top of text */
+    font-size: 1.15rem; /* Increase font size slightly */
+    margin-bottom: 20px; /* More space between goals */
+    display: flex; 
+    align-items: flex-start; 
+    font-weight: 400; /* Regular weight for Rajdhani */
+    letter-spacing: 0.3px;
 }
 
 .goal-icon {
-    font-size: 1.2rem;
-    margin-right: 12px;
+    font-size: 1.3rem; /* Slightly larger icon */
+    margin-right: 15px; /* More space next to icon */
     color: var(--primary-accent);
     display: inline-block;
-    min-width: 25px; /* Ensure space for icon */
+    min-width: 30px; /* Ensure space for icon */
     text-align: center;
+    margin-top: 2px; /* Align icon slightly better */
 }
 
-.my-goals-list .cta-button { /* Button specific to goals list */
-    margin-top: 25px; 
+.my-goals-list .cta-button { 
+    margin-top: 30px; /* More space above button */
 }
 
 
@@ -326,7 +339,7 @@ a:hover {
 }
 
 .skill-card h3 {
-    font-family: var(--font-heading);
+    font-family: var(--font-heading); /* Use main heading font */
     font-size: 1.3rem;
     margin-bottom: 10px;
     font-weight: 700;
@@ -335,6 +348,7 @@ a:hover {
 }
 
 .skill-card p {
+    font-family: var(--font-body); /* Use default body font */
     font-size: 0.95rem;
     color: var(--text-muted);
 }
@@ -376,6 +390,7 @@ a:hover {
 }
 
 .badge-description {
+    font-family: var(--font-body); /* Use default body font */
     font-size: 0.9rem;
     color: var(--text-muted);
     line-height: 1.5;
@@ -383,6 +398,7 @@ a:hover {
 }
 
 .badge-date {
+    font-family: var(--font-body); /* Use default body font */
     font-size: 0.8rem; 
     color: var(--text-muted); 
     margin-top: 8px; 
@@ -414,6 +430,7 @@ a:hover {
 }
 
 .footer p {
+    font-family: var(--font-body); /* Use default body font */
     font-size: 0.9rem;
 }
 
@@ -429,7 +446,7 @@ a:hover {
         font-size: 2rem;
     }
     .hero-title {
-        font-size: 2.8rem; /* Adjusted */
+        font-size: 2.8rem; 
     }
     .hero-subtitle {
         font-size: 1.3rem;
@@ -438,21 +455,21 @@ a:hover {
         flex-direction: column;
     }
     .logo {
-        margin-bottom: 10px; /* Space below logo */
+        margin-bottom: 10px; 
     }
     .nav-links {
-        margin-top: 10px; /* Reduced space */
+        margin-top: 10px; 
         justify-content: center;
         flex-wrap: wrap; 
     }
     .nav-links li {
-        margin: 5px 10px; /* Reduced spacing */
+        margin: 5px 10px; 
     }
     /* Goals list already handles stacking well due to auto-fit */
     .skills-grid, .badge-grid {
         grid-template-columns: 1fr; /* Stack items */
     }
     .about-me-text h3, .my-goals-list h3 {
-        font-size: 1.4rem;
+        font-size: 1.6rem; /* Adjust subheadings */
     }
 }
