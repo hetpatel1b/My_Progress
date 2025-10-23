@@ -415,4 +415,21 @@ a:hover {
     .goals-list, .skills-grid, .badge-grid {
         grid-template-columns: 1fr; /* Stack items on smaller screens */
     }
+    /* --- Additions for Badge Date --- */
+.badge-date {
+    font-size: 0.8rem; /* Smaller font size */
+    color: var(--text-muted); /* Muted color */
+    margin-top: 8px; /* Space above the date */
+    font-style: italic; /* Italicize the date */
+    text-align: right; /* Align date to the right */
+}
+
+/* Optional: Adjust spacing if needed */
+.badge-description + .badge-date { /* Add space only if description exists */
+    margin-top: 10px; 
+}
+
+.badge-item img + .badge-date { /* Add space if only image and date */
+     margin-top: 10px;
+}
 }
